@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "nodemon": "^2.0.15",
+    "socket.io": "^4.4.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js && cd chat && npm start",
+    "start-dev": "nodemon server.js",
+    "heroku-postbuild": "cd client && npm i && npm run build"
+  }
+}
