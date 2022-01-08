@@ -8,8 +8,11 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js && cd chat && npm start",
-    "start-dev": "nodemon server.js",
-    "heroku-postbuild": "cd client && npm i && npm run build"
+    "start": "node server.js",
+    "dev": "concurrently \"nodemon server.js\" \"cd react-chat && npm start\"",
+    "heroku-postbuild": "cd react-chat && npm i && npm run build"
+  },
+  "devDependencies": {
+    "concurrently": "^7.0.0"
   }
 }

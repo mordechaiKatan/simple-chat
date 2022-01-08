@@ -15,11 +15,11 @@ function App() {
   const [initialState2, setInitialState2]=useState()
 
   useEffect(()=> 
-    axios.get("http://localhost:8080/api/get").then((res)=>{setInitialState2(res.data)})
+    axios.get("/api/get").then((res)=>{setInitialState2(res.data)})
     ,[])
     
   useEffect(()=> {
-    let socket = socketClient ("http://localhost:8080");
+    let socket = socketClient ("/");
     socket.on('connection', (data) => {
       console.log(`I'm connected with the back-end`);
     });
@@ -29,7 +29,7 @@ function App() {
   },[])
 
   function addMessage (newMessage) {
-    axios.post("http://localhost:8080/api/post", {newMessage: newMessage} )
+    axios.post("/api/post", {newMessage: newMessage} )
   }
 
   const store = createStore (reducer, initialState)
