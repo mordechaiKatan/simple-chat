@@ -22,7 +22,7 @@ let Chat2 = ({ messages, addMessage})=>{
                {messages && messages.map((m, index)=><MessageItem key={index} text={m}/>)}
             </div>
             <div className="futer" >
-                <SendIcon style={{transform: "rotate(-180deg)"}} onClick={()=>{addMessage(value); setValue("")}}/>                
+                <SendIcon onClick={()=>{addMessage(value); setValue("")}}/>                
                 <input className="chat-input" value={value} onChange={(e)=>setValue(e.target.value)}  onKeyDown={handleKeyDown}></input>        
                 <button onClick={clear}>CLEAR CHAT</button>
             </div>
