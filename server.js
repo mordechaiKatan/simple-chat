@@ -10,9 +10,9 @@ app.use(bodyParser.json({limit: '10mb', extended: true}));
 app.use(bodyParser.urlencoded({limit: '10mb', extended: true}));
 app.use(express.static(path.join(__dirname, 'react-chat/build')));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname+'/react-chat/build/index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname+'/react-chat/build/index.html'));
+// });
 
 const io = require('socket.io')(http, {
     cors: {
