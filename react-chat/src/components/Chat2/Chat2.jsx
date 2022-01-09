@@ -12,7 +12,7 @@ let Chat2 = ({ messages, addMessage})=>{
     let handleKeyDown = (e)=> {if (e.key === 'Enter') {addMessage(value); setValue("")}}
 
     function clear () {
-        // axios.get("/api/clear")
+        axios.get("/api/clear")
         console.log("sababa")
     }
 
