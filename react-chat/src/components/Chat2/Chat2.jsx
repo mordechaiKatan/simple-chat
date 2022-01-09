@@ -2,7 +2,7 @@ import {useState, useEffect} from "react"
 import "./Chat2.css"
 import MessageItem from "../MessageItem/MessageItem";
 import axios from 'axios';
-import SendIcon from '@material-ui/icons/gitSend';
+import icon from "./Arrow_icon.png"
 
 
 let Chat2 = ({ messages, addMessage})=>{
@@ -22,7 +22,7 @@ let Chat2 = ({ messages, addMessage})=>{
                {messages && messages.map((m, index)=><MessageItem key={index} text={m}/>)}
             </div>
             <div className="futer" >
-                <SendIcon onClick={()=>{addMessage(value); setValue("")}}/>                
+                <img style={{height: 20, width: 20, transform: "rotate(-180deg)"}} src={icon} onClick={()=>{addMessage(value); setValue("")}}/>
                 <input className="chat-input" value={value} onChange={(e)=>setValue(e.target.value)}  onKeyDown={handleKeyDown}></input>        
                 <button onClick={clear}>CLEAR CHAT</button>
             </div>
