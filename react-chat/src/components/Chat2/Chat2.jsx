@@ -11,7 +11,10 @@ let Chat2 = ({ messages, addMessage})=>{
 
     let handleKeyDown = (e)=> {if (e.key === 'Enter') {addMessage(value); setValue("")}}
 
-    function clear () {axios.get("/api/clear")}
+    function clear () {
+        // axios.get("/api/clear")
+        console.log("sababa")
+    }
 
     return (
         <div className="chat-app2">
