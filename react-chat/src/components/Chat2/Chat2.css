@@ -25,3 +25,9 @@
     border-right:10px solid blue; 
     margin-right: 15px;      
 }
+
+.futer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

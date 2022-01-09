@@ -25,7 +25,8 @@ function App() {
     });
     socket.on('newMessages', (data)=>{
       setInitialState2([...data], console.log(data))
-    })
+    });
+    socket.on('clear', ()=> setInitialState2([]))
   },[])
 
   function addMessage (newMessage) {

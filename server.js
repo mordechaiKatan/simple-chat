@@ -23,7 +23,7 @@ const io = require('socket.io')(http, {
 
 const PORT = process.env.PORT || 8080;
 
-let messages=["Hello!", "How are you", "Whats your name"]
+let messages=[]
 
 http.listen(PORT, () => {
     console.log(`listening on *:${PORT}`);
@@ -34,6 +34,12 @@ io.on('connection', (socket) => {
 });
 
 app.get("/api/get", (req, res) => {res.send(messages)})
+
+app.get("/api/clear", (req,res) => {
+  messages=[];
+  res.send(messages);
+  io.emit("clear")
+})
 
 app.post("/api/post", (req,res) => {
   messages=[req.body.newMessage, ...messages];
