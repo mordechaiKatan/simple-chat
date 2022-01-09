@@ -23,7 +23,7 @@ const io = require('socket.io')(http, {
 
 const PORT = process.env.PORT || 8080;
 
-let messages=["hello!", "how are you", "whats your name"]
+let messages=["Hello!", "How are you", "Whats your name"]
 
 http.listen(PORT, () => {
     console.log(`listening on *:${PORT}`);
