@@ -35,11 +35,11 @@ io.on('connection', (socket) => {
 
 app.get("/api/get", (req, res) => {res.send(messages)})
 
-// app.get("/api/clear", (req,res) => {
-//   messages=[];
-//   res.send(messages);
-//   io.emit("clear")
-// })
+app.get("/api/clear", (req,res) => {
+  messages=[];
+  res.send(messages);
+  io.emit("clear")
+})
 
 app.post("/api/post", (req,res) => {
   messages=[req.body.newMessage, ...messages];
