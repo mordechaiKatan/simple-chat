@@ -2,7 +2,8 @@ import {useState, useEffect} from "react"
 import "./Chat2.css"
 import MessageItem from "../MessageItem/MessageItem";
 import axios from 'axios';
-import icon from "./Arrow_icon.png"
+import icon from "./Arrow_icon.png";
+import icon2 from "./5211.png_860.png"
 
 
 let Chat2 = ({ messages, addMessage})=>{
@@ -23,9 +24,10 @@ let Chat2 = ({ messages, addMessage})=>{
                {messages && messages.map((m, index)=><MessageItem key={index} text={m}/>)}
             </div>
             <div className="futer" >
-                <img style={{height: 20, width: 20, transform: "rotate(-180deg)"}} src={icon} onClick={()=>{addMessage(value); setValue("")}}/>
+                <img style={{height: 40, width: 40, transform: "rotate(-180deg)"}} src={icon} onClick={()=>{addMessage(value); setValue("")}}/>
                 <input className="chat-input" value={value} onChange={(e)=>setValue(e.target.value)}  onKeyDown={handleKeyDown}></input>        
-                <button onClick={clear}>CLEAR CHAT</button>
+                <img src={icon2} style={{width:40,height:40}} onClick={clear}/>
+                {/* <button >CLEAR CHAT</button> */}
             </div>
         </div>
     )

@@ -28,7 +28,7 @@
 
 .list-message2 {
     margin-top: 40px;
-    max-height: 550px;
+    max-height: 500px;
     overflow-y: auto;
     display: flex;
     flex-direction: column-reverse;
@@ -47,10 +47,15 @@
     direction: rtl;
     margin-right: 3px;
     margin-left: 3px;
+    border-radius: 5px;
+    height: 40px;
+    font-size: medium;
 }
 
 .futer {
+    border-top: 2px solid rgb(224, 224, 224);
+    width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
 }
