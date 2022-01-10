@@ -1,3 +1,5 @@
+import "./MessageItem.css"
+
 let MessageItem = ({text})=> {
     return (
         <div className="message-item">

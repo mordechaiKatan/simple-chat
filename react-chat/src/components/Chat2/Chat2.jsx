@@ -18,6 +18,7 @@ let Chat2 = ({ messages, addMessage})=>{
 
     return (
         <div className="chat-app2">
+            <div className="header">MY CHAT</div>
             <div className="list-message2">
                {messages && messages.map((m, index)=><MessageItem key={index} text={m}/>)}
             </div>
