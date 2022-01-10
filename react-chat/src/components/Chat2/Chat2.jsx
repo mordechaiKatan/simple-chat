@@ -36,7 +36,8 @@ let Chat2 = ({ messages})=>{
             <div className="futer" >
                 {value
                 ? <img style={{height: 40, width: 40, transform: "rotate(-180deg)"}} src={icon} onClick={send}/>
-                : <img style={{height:40, width:40}} src={xicon}/>}
+                // : <img style={{height:40, width:40}} src={xicon}/>}
+                : <img style={{height:40, width:40}} src={icon}/>}
                 <input className="chat-input" value={value} onChange={(e)=>setValue(e.target.value)}  onKeyDown={handleKeyDown}></input>        
                 <img src={icon2} style={{width:40,height:40}} onClick={clear}/>
             </div>
