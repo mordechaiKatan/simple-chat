@@ -2,10 +2,10 @@ import {useState, useEffect} from "react";
 import axios from 'axios';
 import './App.css';
 import socketClient  from "socket.io-client";
-import Chat from "./components/Chat/Chat";
-import {createStore} from "redux";
-import {Provider} from "react-redux";
-import reducer from "./redux/reducer";
+// import Chat from "./components/Chat/Chat";
+// import {createStore} from "redux";
+// import {Provider} from "react-redux";
+// import reducer from "./redux/reducer";
 import Chat2 from "./components/Chat2/Chat2";
 
 
