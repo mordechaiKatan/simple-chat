@@ -23,7 +23,7 @@ let Chat = ({ messages, setName, newName})=>{
 
     function addMessage (newMessage) {
         console.log(newMessage);
-        axios.post("/api/post", {newMessage: newMessage, name: newName} )
+        axios.post("/api/post", {newMessage: newMessage, fullName: newName} )
       }
 
     function clear () {
@@ -37,29 +37,42 @@ let Chat = ({ messages, setName, newName})=>{
 
     return (
         <div className="chat-app2">
+
             <div className="header">MY CHAT</div>
+            
             {showModal &&
             <div className="modal">
-                <Modal setName={setName} setShowModal={setShowModal} newName={newName}/>
+                <Modal
+                    setName={setName}
+                    setShowModal={setShowModal}
+                    newName={newName}/>
             </div> }
+            
             <div className="list-message2">
                {messages &&
                messages.map((msg, index)=>
-               <MessageItem key={index} msg={msg} newName={newName}/>)}
+                <MessageItem
+                    key={index}
+                    msg={msg}
+                    newName={newName}/>)}
             </div>
+            
             <div className="futer" >
                 {value
                 ? <img className="chat-img" src={icon} onClick={send}/>
                 : <img className="chat-img" src={xicon}/>}
+                
                 <input
                     className="chat-input"
                     value={value}
                     onChange={(e)=>setValue(e.target.value)}
                     onKeyDown={handleKeyDown}
                     disabled={showModal}
-                    ></input>        
+                    ></input>
+
                 <img className="chat-img" src={icon2} onClick={clear}/>
             </div>
+
         </div>
     )
 }

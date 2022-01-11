@@ -4,6 +4,8 @@ const http = require('http').createServer(app);
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const path = require('path');
+const { port } = require('./config');
+const connect = require('./db');
 
 app.use(cors());
 app.use(bodyParser.json({extended: true}));
@@ -16,13 +18,18 @@ const io = require('socket.io')(http, {
     }
   });
 
-const PORT = process.env.PORT || 8080;
-
 let messages=[];
 
-http.listen(PORT, () => {
-    console.log(`listening on *:${PORT}`);
+http.listen(port, () => {
+    console.log(`listening on *:${port}`);
 });
+
+// connect().then(() => {
+//   console.log('MONGO DB is connected');
+//   http.listen(port, () => {
+//     console.log('Server is up with express on port: ', port);
+//   });
+// });
 
 app.get("/api/get", (req, res) => {res.send(messages)})
 
@@ -34,6 +41,6 @@ app.get("/api/clear", (req,res) => {
 
 app.post("/api/post", (req,res) => {
   messages=[req.body, ...messages];
-  res.send(messages);
+  res.send(req.body);
   io.emit("newMessage", req.body);
 })
