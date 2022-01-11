@@ -1,46 +1,38 @@
-import {useState, useEffect} from "react";
+import {useState, useEffect,useRef} from "react";
 import axios from 'axios';
 import './App.css';
 import socketClient  from "socket.io-client";
-// import Chat from "./components/Chat/Chat";
-// import {createStore} from "redux";
-// import {Provider} from "react-redux";
-// import reducer from "./redux/reducer";
-import Chat2 from "./components/Chat2/Chat2";
+import Chat from "./components/Chat/Chat";
+
 
 
 function App() {
 
-  // const [initialState, setInitialState]=useState({messages:["hello!", "how are you", "whats your name"]});
-  // const store = createStore (reducer, initialState);
-
-  const [messages, setMessages]=useState()
+  const [messages, setMessages]=useState([]);
+  const [message,setMessage]=useState();
+  const [helpState,setHelpState]=useState([]);
+  const [newName,setName] = useState();
+  
 
   useEffect(()=> 
     axios.get("/api/get").then((res)=>{ setMessages(res.data)})
     ,[])
     
-  useEffect(()=> {
+   useEffect(()=> {
     let socket = socketClient ("/");
-    socket.on('connection', (data) => {
-      console.log(`I'm connected with the back-end`);
+    socket.on('newMessage', (data)=>{
+      setMessage({...data});
     });
-    socket.on('newMessages', (data)=>{
-      setMessages([...data]); console.log(data)
-    });
-    socket.on('clear', ()=>  setMessages([]))
-  },[])
+    socket.on('clear', ()=> setMessages([]))
+  },[]) 
 
- 
- 
+  useEffect(()=>{
+    setMessages([message,...messages])
+  },[message])
 
-  return (
-
-    <div className="App">    
-      {messages && <Chat2 messages={messages}></Chat2>}  
-      {/* <Provider store={store}>
-        <Chat></Chat>
-        </Provider> */}
+  return (    
+    <div className="App">
+      <Chat messages={messages} setName={setName} newName={newName}/>
     </div>
   );
 }

@@ -1,10 +1,13 @@
 import "./MessageItem.css"
 
-let MessageItem = ({text})=> {
+let MessageItem = ({msg})=> {
     return (
-        <div className="message-item">
-            <div>{text}</div>
-        </div>
+        <>
+            {msg && <div className="message-item">
+                <div style={{color:"blue", fontSize: "x-small"}}>{msg.name}</div>
+                <div>{msg.newMessage}</div>
+            </div>}
+        </>
     )
 }
 
