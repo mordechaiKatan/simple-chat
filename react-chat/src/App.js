@@ -10,7 +10,6 @@ function App() {
 
   const [messages, setMessages]=useState([]);
   const [message,setMessage]=useState();
-  const [helpState,setHelpState]=useState([]);
   const [newName,setName] = useState();
   
 
@@ -32,7 +31,10 @@ function App() {
 
   return (    
     <div className="App">
-      <Chat messages={messages} setName={setName} newName={newName}/>
+      <Chat
+        messages={messages}
+        setName={setName}
+        newName={newName}/>
     </div>
   );
 }

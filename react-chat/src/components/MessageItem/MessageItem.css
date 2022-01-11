@@ -5,3 +5,8 @@
     width: 260px;
     direction: rtl;
 }
+
+.name {
+    color:"blue";
+    font-size:x-small;
+}

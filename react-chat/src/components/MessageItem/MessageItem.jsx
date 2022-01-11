@@ -4,7 +4,7 @@ let MessageItem = ({msg})=> {
     return (
         <>
             {msg && <div className="message-item">
-                <div style={{color:"blue", fontSize: "x-small"}}>{msg.name}</div>
+                <div className="name">{msg.name}</div>
                 <div>{msg.newMessage}</div>
             </div>}
         </>

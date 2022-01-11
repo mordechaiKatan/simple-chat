@@ -3,9 +3,9 @@ import "./Chat.css"
 import MessageItem from "../MessageItem/MessageItem";
 import Modal from "../Modal/Modal";
 import axios from 'axios';
-import icon from "./arrow2.png"
-import icon2 from "./5211.png_860.png";
-import xicon from "./xicon.png";
+import icon from "../Chat/icons/arrow2.png"
+import icon2 from "../Chat/icons/garbage.png";
+import xicon from "../Chat/icons/xicon.png";
 
 
 
@@ -38,14 +38,19 @@ let Chat = ({ messages, setName, newName})=>{
     return (
         <div className="chat-app2">
             <div className="header">MY CHAT</div>
-            {showModal && <div className="modal"><Modal setName={setName} setShowModal={setShowModal} newName={newName}/></div>}
+            {showModal &&
+            <div className="modal">
+                <Modal setName={setName} setShowModal={setShowModal} newName={newName}/>
+            </div> }
             <div className="list-message2">
-               {messages && messages.map((msg, index)=><MessageItem key={index} msg={msg} newName={newName}/>)}
+               {messages &&
+               messages.map((msg, index)=>
+               <MessageItem key={index} msg={msg} newName={newName}/>)}
             </div>
             <div className="futer" >
                 {value
-                ? <img style={{height: 40, width: 40}} src={icon} onClick={send}/>
-                : <img style={{height:40, width:40}} src={xicon}/>}
+                ? <img className="chat-img" src={icon} onClick={send}/>
+                : <img className="chat-img" src={xicon}/>}
                 <input
                     className="chat-input"
                     value={value}
@@ -53,7 +58,7 @@ let Chat = ({ messages, setName, newName})=>{
                     onKeyDown={handleKeyDown}
                     disabled={showModal}
                     ></input>        
-                <img src={icon2} style={{width:40,height:40}} onClick={clear}/>
+                <img className="chat-img" src={icon2} onClick={clear}/>
             </div>
         </div>
     )
