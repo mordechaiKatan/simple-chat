@@ -47,10 +47,9 @@ app.post("/api/post", (req,res) => {
 })
 
 app.post("/api/checkNmae",(req,res) => {
-  let checkName;
   if (!users.some((u)=>u===req.body.checkedName))
-  {checkName=true;
-    users=[req.body.fullName, ...users];}  
-  else {checkName=true};
-  res.send(checkName)
+  { users=[req.body.fullName, ...users];
+    res.send(true)}  
+  else {res.send(false)};
+  
 })
