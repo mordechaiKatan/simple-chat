@@ -19,6 +19,7 @@ const io = require('socket.io')(http, {
   });
 
 let messages=[];
+let users=[];
 
 http.listen(port, () => {
     console.log(`listening on *:${port}`);
@@ -40,7 +41,16 @@ app.get("/api/clear", (req,res) => {
 })
 
 app.post("/api/post", (req,res) => {
-  messages=[req.body, ...messages];
-  res.send(req.body);
+  messages=[req.body, ...messages];        
   io.emit("newMessage", req.body);
+  res.send(req.body);
+})
+
+app.post("/api/checkNmae",(req,res) => {
+  let checkName;
+  if (!users.some((u)=>u===req.body.checkedName))
+  {checkName=true;
+    users=[req.body.fullName, ...users];}  
+  else {checkName=true};
+  res.send(checkName)
 })
