@@ -10,15 +10,22 @@ function App() {
 
   const [messages, setMessages]=useState([]);
   const [message,setMessage]=useState();
-  const [newName,setName] = useState();
+  const [theName,setName] = useState();
   
 
-  useEffect(()=> 
-    axios.get("/api/get").then((res)=>{ setMessages(res.data)})
-    ,[])
+  useEffect(()=> {
+    axios.get("/api/get").then((res)=>{ setMessages(res.data)});
+    if (localStorage.getItem("name"))
+    {
+      axios.post("/api/saveUser",
+      {savedName: localStorage.getItem("name"),
+      userId: localStorage.getItem("socketId")}
+    )}
+   } ,[])
     
-   useEffect(()=> {
-    let socket = socketClient ("/");
+   useEffect(()=> {    
+    let socket = socketClient ("/");     
+    socket.on("getId", (data)=>localStorage.setItem("socketId",data));
     socket.on('newMessage', (data)=>{
       setMessage({...data});
     });
@@ -34,7 +41,7 @@ function App() {
       <Chat
         messages={messages}
         setName={setName}
-        newName={newName}/>
+        theName={theName}/>
     </div>
   );
 }

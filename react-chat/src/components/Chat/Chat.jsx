@@ -6,24 +6,31 @@ import axios from 'axios';
 import icon from "../Chat/icons/arrow2.png"
 import icon2 from "../Chat/icons/garbage.png";
 import xicon from "../Chat/icons/xicon.png";
+import Users from "../Users/Users"
 
 
 
-let Chat = ({ messages, setName, newName})=>{
+let Chat = ({ messages, setName, theName})=>{
    
     const [value,setValue]=useState("");
     const [showModal,setShowModal] = useState(false);
+    const [showUsers,setShowUsers] = useState(false);
+    const [buttonText,setButtonText] = useState();
 
     useEffect(()=>{
         let nameFromStorage = localStorage.getItem("name");
         !nameFromStorage ? setShowModal(true) : setName(nameFromStorage)
     },[])
 
+    useEffect(()=> {
+        if (showUsers) {setButtonText("Hide users")}
+        else {setButtonText("Display users")}
+    },[showUsers])
+
     let handleKeyDown = (e)=> {if (e.key === 'Enter' && value) {send()}}
 
     function addMessage (newMessage) {
-        console.log(newMessage);
-        axios.post("/api/post", {newMessage: newMessage, fullName: newName} )
+        axios.post("/api/post", {newMessage: newMessage, fullName: theName})
       }
 
     function clear () {
@@ -39,13 +46,20 @@ let Chat = ({ messages, setName, newName})=>{
         <div className="chat-app2">
 
             <div className="header">MY CHAT</div>
+
+            <button className="menu-button" onClick={()=>setShowUsers(!showUsers)}>{buttonText}</button>
+
+            {showUsers && 
+            <div className="users">
+                <Users setShowUsers={setShowUsers}/>
+            </div>}
             
             {showModal &&
             <div className="modal">
                 <Modal
                     setName={setName}
                     setShowModal={setShowModal}
-                    newName={newName}/>
+                    theName={theName}/>
             </div> }
             
             <div className="list-message2">
@@ -54,7 +68,7 @@ let Chat = ({ messages, setName, newName})=>{
                 <MessageItem
                     key={index}
                     msg={msg}
-                    newName={newName}/>)}
+                    theName={theName}/>)}
             </div>
             
             <div className="futer" >
