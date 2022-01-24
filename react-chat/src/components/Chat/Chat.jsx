@@ -38,11 +38,6 @@ let Chat = ({ messages, setName, theName})=>{
         axios.get("/api/clear")
     }
 
-    // function send () {
-    //     addMessage(value);
-    //     setValue("")
-    // }
-
     return (
         <div className="chat-app2">
 
