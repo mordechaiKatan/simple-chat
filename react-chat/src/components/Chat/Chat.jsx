@@ -27,20 +27,21 @@ let Chat = ({ messages, setName, theName})=>{
         else {setButtonText("Display users")}
     },[showUsers])
 
-    let handleKeyDown = (e)=> {if (e.key === 'Enter' && value) {send()}}
+    let handleKeyDown = (e)=> {if (e.key === 'Enter' && value) {addMessage()}}
 
-    function addMessage (newMessage) {
-        axios.post("/api/post", {newMessage: newMessage, fullName: theName})
+    function addMessage () {
+        axios.post("/api/post", {newMessage: value, fullName: theName});
+        setValue("")
       }
 
     function clear () {
         axios.get("/api/clear")
     }
 
-    function send () {
-        addMessage(value);
-        setValue("")
-    }
+    // function send () {
+    //     addMessage(value);
+    //     setValue("")
+    // }
 
     return (
         <div className="chat-app2">
@@ -73,7 +74,7 @@ let Chat = ({ messages, setName, theName})=>{
             
             <div className="futer" >
                 {value
-                ? <img className="chat-img" src={icon} onClick={send}/>
+                ? <img className="chat-img" src={icon} onClick={addMessage}/>
                 : <img className="chat-img" src={xicon}/>}
                 
                 <input
