@@ -22,17 +22,9 @@ const io = require('socket.io')(http, {
 let messages=[];
 let users=[];
 
-// http.listen(port, () => {
-//     console.log(`listening on *:${port}`);
-// });
-
 io.on("connection", (socket) => {
   socket.emit ("getId",socket.id)}
   )
-  // socket.on("private message", (anotherSocketId, msg) => {
-  //   socket.to(anotherSocketId).emit("private message", socket.id, msg);
-  // });
-// });
 
 connect().then(() => {
   console.log('MONGO DB is connected');
@@ -45,7 +37,7 @@ app.get("/api/get", (req, res) => {res.send(messages)})
 
 app.get("/api/clear", (req,res) => {
   messages=[];
-  res.send(messages);
+  res.send("clear");
   io.emit("clear")
 })
 
@@ -63,6 +55,7 @@ app.post ("/api/saveUser", async (req,res)=> {
       userId:req.body.userId});
     await newUser.save();
   }
+  res.send("User saved")
 })
 
 app.post("/api/post", (req,res) => {
@@ -82,3 +75,16 @@ app.post("/api/checkNmae",(req,res) => {
 app.get("/api/users", (req,res)=>{
   res.send (users)
 })
+
+
+
+
+
+
+
+
+
+  // socket.on("private message", (anotherSocketId, msg) => {
+  //   socket.to(anotherSocketId).emit("private message", socket.id, msg);
+  // });
+// });
